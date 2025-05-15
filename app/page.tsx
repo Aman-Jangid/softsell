@@ -10,42 +10,20 @@ import {
   BadgeHelp,
   ChevronDown,
 } from "lucide-react";
-
-// Smooth scroll client component
-const SmoothScrollLink = ({
-  href,
-  children,
-  className,
-}: {
-  href: string;
-  children: React.ReactNode;
-  className: string;
-}) => {
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const targetId = href.replace("#", "");
-    const element = document.getElementById(targetId);
-
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
-
-  return (
-    <a href={href} className={className} onClick={handleClick}>
-      {children}
-    </a>
-  );
-};
+import { ThemeToggle } from "./components/ThemeToggle";
+import { SmoothScrollLink } from "./components/SmoothScrollLink";
 
 export default function Home() {
   return (
     <div className="font-[family-name:var(--font-geist-sans)] scroll-smooth">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-24 px-6 sm:px-10 md:px-20 relative overflow-hidden">
+      <section
+        className="text-white py-24 px-6 sm:px-10 md:px-20 relative overflow-hidden"
+        style={{
+          background:
+            "linear-gradient(to right, var(--hero-gradient-from), var(--hero-gradient-to))",
+        }}
+      >
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
           <div className="absolute top-10 right-10 w-72 h-72 bg-white rounded-full blur-2xl animate-pulse"></div>
           <div
@@ -64,10 +42,12 @@ export default function Home() {
           </div>
         </div>
 
+        <ThemeToggle />
+
         <div className="max-w-4xl mx-auto flex flex-col gap-8 items-center text-center relative z-10 mt-10">
           <div className="relative inline-block">
             <div className="absolute -inset-1 bg-gradient-to-r from-indigo-200 to-purple-200 rounded-lg blur-3xl opacity-20"></div>
-            <h1 className="relative text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight">
+            <h1 className="relative text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight  text-white">
               Transform Unused Software{" "}
               <span className="text-indigo-200">into Cash</span>
             </h1>
@@ -77,7 +57,13 @@ export default function Home() {
             quickly, securely, and at the best market rates.
           </p>
           <div className="mt-2 flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-center">
-            <button className="bg-gray-50 text-indigo-700 hover:bg-indigo-50 transition-all py-3 rounded-md font-semibold text-lg shadow-xl hover:shadow-2xl hover:translate-y-[-2px] transform duration-300 min-w-44 relative group">
+            <button
+              className="transition-all py-3 rounded-md font-semibold text-lg shadow-xl hover:shadow-2xl hover:translate-y-[-2px] transform duration-300 min-w-44 relative group"
+              style={{
+                backgroundColor: "var(--accent)",
+                color: "var(--primary)",
+              }}
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 opacity-0 group-hover:opacity-10 rounded-md transition-opacity duration-300"></div>
               Sell Licenses
             </button>
@@ -98,44 +84,72 @@ export default function Home() {
       {/* How It Works */}
       <section
         id="how-it-works"
-        className="py-16 px-6 sm:px-10 md:px-20 bg-gray-50"
+        className="py-16 px-6 sm:px-10 md:px-20 transition-colors duration-300"
+        style={{ backgroundColor: "var(--section-light)" }}
       >
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-500">
+          <h2
+            className="text-3xl font-bold text-center mb-12"
+            style={{ color: "var(--foreground)" }}
+          >
             How It Works
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex flex-col items-center text-center p-6 rounded-lg">
-              <div className="w-16 h-16 flex items-center justify-center bg-blue-100 text-blue-600 rounded-full mb-4">
+              <div
+                className="w-16 h-16 flex items-center justify-center rounded-full mb-4 bg-[var(--primary)]/20"
+                style={{
+                  color: "var(--primary)",
+                }}
+              >
                 <Inbox size={28} />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-600">
+              <h3
+                className="text-xl font-semibold mb-2"
+                style={{ color: "var(--foreground)" }}
+              >
                 Upload License
               </h3>
-              <p className="text-gray-500">
+              <p style={{ color: "var(--muted-foreground)" }}>
                 Submit your software license details through our secure portal
                 for evaluation.
               </p>
             </div>
             <div className="flex flex-col items-center text-center p-6 rounded-lg">
-              <div className="w-16 h-16 flex items-center justify-center bg-indigo-100 text-indigo-600 rounded-full mb-4">
+              <div
+                className="w-16 h-16 flex items-center justify-center rounded-full mb-4 bg-[var(--primary)]/20"
+                style={{
+                  color: "var(--secondary)",
+                }}
+              >
                 <BarChart size={28} />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-600">
+              <h3
+                className="text-xl font-semibold mb-2"
+                style={{ color: "var(--foreground)" }}
+              >
                 Get Valuation
               </h3>
-              <p className="text-gray-500">
+              <p style={{ color: "var(--muted-foreground)" }}>
                 Receive a competitive market-based valuation within 24 hours.
               </p>
             </div>
             <div className="flex flex-col items-center text-center p-6 rounded-lg">
-              <div className="w-16 h-16 flex items-center justify-center bg-purple-100 text-purple-600 rounded-full mb-4">
+              <div
+                className="w-16 h-16 flex items-center justify-center rounded-full mb-4 bg-[var(--primary)]/20"
+                style={{
+                  color: "var(--secondary)",
+                }}
+              >
                 <CreditCard size={28} />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-600">
+              <h3
+                className="text-xl font-semibold mb-2"
+                style={{ color: "var(--foreground)" }}
+              >
                 Get Paid
               </h3>
-              <p className="text-gray-500">
+              <p style={{ color: "var(--muted-foreground)" }}>
                 Accept our offer and receive payment through your preferred
                 method within 3 business days.
               </p>
@@ -145,50 +159,86 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 px-6 sm:px-10 md:px-20 bg-gray-800">
+      <section
+        className="py-16 px-6 sm:px-10 md:px-20 transition-colors duration-300"
+        style={{ backgroundColor: "var(--section-dark)" }}
+      >
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-18 text-gray-300">
+          <h2
+            className="text-3xl font-bold text-center mb-18"
+            style={{ color: "var(--primary-foreground)" }}
+          >
             Why Choose Us
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="border border-green-100/20 rounded-lg p-6 hover:shadow-md transition relative  overflow-hidden">
+            <div
+              className="border rounded-lg p-6 hover:shadow-md transition relative overflow-hidden"
+              style={{ borderColor: "var(--border)" }}
+            >
               <div className="text-green-500 mb-4 absolute -right-4 -bottom-10">
                 <CheckCircle size={64} strokeWidth={1} />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Best Market Rates</h3>
-              <p className="text-gray-400 text-sm">
+              <h3
+                className="text-lg font-semibold mb-2"
+                style={{ color: "var(--primary-foreground)" }}
+              >
+                Best Market Rates
+              </h3>
+              <p style={{ color: "var(--muted-foreground)" }}>
                 We leverage our extensive network to offer you the highest
                 possible value for your licenses.
               </p>
             </div>
-            <div className="border border-orange-100/20 rounded-lg p-6 hover:shadow-md transition relative  overflow-hidden">
+            <div
+              className="border rounded-lg p-6 hover:shadow-md transition relative overflow-hidden"
+              style={{ borderColor: "var(--border)" }}
+            >
               <div className="text-orange-500 mb-4 absolute -right-4 -bottom-10">
                 <Shield size={64} strokeWidth={1} />
               </div>
-              <h3 className="text-lg font-semibold mb-2">
+              <h3
+                className="text-lg font-semibold mb-2"
+                style={{ color: "var(--primary-foreground)" }}
+              >
                 Secure Transactions
               </h3>
-              <p className="text-gray-400 text-sm">
+              <p style={{ color: "var(--muted-foreground)" }}>
                 Advanced encryption and compliance protocols ensure your data
                 and transactions are fully protected.
               </p>
             </div>
-            <div className="border border-blue-200/20 rounded-lg p-6 hover:shadow-md transition relative  overflow-hidden">
+            <div
+              className="border rounded-lg p-6 hover:shadow-md transition relative overflow-hidden"
+              style={{ borderColor: "var(--border)" }}
+            >
               <div className="text-blue-500 mb-4 absolute -right-4 -bottom-10">
                 <MapPin size={64} strokeWidth={1} />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Global Reach</h3>
-              <p className="text-gray-400 text-sm">
+              <h3
+                className="text-lg font-semibold mb-2"
+                style={{ color: "var(--primary-foreground)" }}
+              >
+                Global Reach
+              </h3>
+              <p style={{ color: "var(--muted-foreground)" }}>
                 Our international buyer network means we can sell licenses from
                 any region with maximum return.
               </p>
             </div>
-            <div className="border border-purple-200/20 rounded-lg p-6 hover:shadow-md transition relative  overflow-hidden">
+            <div
+              className="border rounded-lg p-6 hover:shadow-md transition relative overflow-hidden"
+              style={{ borderColor: "var(--border)" }}
+            >
               <div className="text-purple-500 mb-4 absolute -right-4 -bottom-10">
                 <BadgeHelp size={64} strokeWidth={1} />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Dedicated Support</h3>
-              <p className="text-gray-400 text-sm">
+              <h3
+                className="text-lg font-semibold mb-2"
+                style={{ color: "var(--primary-foreground)" }}
+              >
+                Dedicated Support
+              </h3>
+              <p style={{ color: "var(--muted-foreground)" }}>
                 Our experts guide you through every step with personalized
                 service and industry insights.
               </p>
@@ -198,48 +248,80 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-16 px-6 sm:px-10 md:px-20 bg-gray-50">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12  text-gray-500">
+      <section
+        className="py-16 px-6 sm:px-10 md:px-20 transition-colors duration-300"
+        style={{ backgroundColor: "var(--section-light)" }}
+      >
+        <div className="max-w-5xl mx-auto ">
+          <h2
+            className="text-3xl font-bold text-center mb-12 "
+            style={{ color: "var(--foreground)" }}
+          >
             What Our Customers Say
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-lg shadow-sm">
-              <p className="text-gray-700 italic mb-6">
+            <div className="p-8 rounded-lg shadow-sm border border-[var(--border)]">
+              <p
+                className="italic mb-6"
+                style={{ color: "var(--testimonial-text)" }}
+              >
                 &ldquo;SoftSell helped us recover over $50,000 from unused
                 enterprise licenses after our company downsized. The process was
                 painless and their valuation exceeded our expectations.&rdquo;
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-semibold">
+                <div
+                  className="w-12 h-12 rounded-full flex items-center justify-center font-semibold"
+                  style={{
+                    backgroundColor: "var(--accent)",
+                    color: "var(--primary)",
+                  }}
+                >
                   JD
                 </div>
                 <div className="ml-4">
-                  <h4 className="font-semibold text-gray-500">
+                  <h4
+                    className="font-semibold"
+                    style={{ color: "var(--foreground)" }}
+                  >
                     Jennifer Davis
                   </h4>
-                  <p className="text-sm text-gray-400">
+                  <p style={{ color: "var(--muted-foreground)" }}>
                     CTO, Horizon Technologies
                   </p>
                 </div>
               </div>
             </div>
-            <div className="bg-white p-8 rounded-lg shadow-sm">
-              <p className="text-gray-700 italic mb-6">
+            <div className="p-8 rounded-lg shadow-sm border border-[var(--border)]">
+              <p
+                className="italic mb-6"
+                style={{ color: "var(--testimonial-text)" }}
+              >
                 &ldquo;As a startup that acquired too many licenses, SoftSell
                 was a lifesaver. Their team handled everything professionally,
                 and the funds we recovered helped extend our runway by two
                 months.&rdquo;
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold">
+                <div
+                  className="w-12 h-12 rounded-full flex items-center justify-center font-semibold"
+                  style={{
+                    backgroundColor: "var(--accent)",
+                    color: "var(--secondary)",
+                  }}
+                >
                   MR
                 </div>
                 <div className="ml-4">
-                  <h4 className="font-semibold text-gray-500">
+                  <h4
+                    className="font-semibold"
+                    style={{ color: "var(--foreground)" }}
+                  >
                     Michael Rodriguez
                   </h4>
-                  <p className="text-sm text-gray-400">Founder, NexusAI</p>
+                  <p style={{ color: "var(--muted-foreground)" }}>
+                    Founder, NexusAI
+                  </p>
                 </div>
               </div>
             </div>
@@ -248,24 +330,42 @@ export default function Home() {
       </section>
 
       {/* Contact Form */}
-      <section className="py-16 px-6 sm:px-10 md:px-20 bg-gray-800">
+      <section
+        className="py-16 px-6 sm:px-10 md:px-20 transition-colors duration-300"
+        style={{ backgroundColor: "var(--section-dark)" }}
+      >
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-300">
+          <h2
+            className="text-3xl font-bold text-center mb-12"
+            style={{ color: "var(--primary-foreground)" }}
+          >
             Get in Touch
           </h2>
-          <form className="bg-gray-900 p-8 rounded-lg shadow-md border border-gray-800 relative before:absolute before:inset-0 before:p-[1px] before:bg-gradient-to-r before:from-indigo-500 before:via-purple-500 before:to-indigo-500 before:rounded-lg before:-z-10 before:opacity-50">
+          <form
+            className="p-8 rounded-lg shadow-md border relative before:absolute before:inset-0 before:p-[1px] before:bg-gradient-to-r before:from-indigo-500 before:via-purple-500 before:to-indigo-500 before:rounded-lg before:-z-10 before:opacity-50"
+            style={{
+              backgroundColor: "var(--form-bg)",
+              borderColor: "var(--form-border)",
+            }}
+          >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-gray-400 mb-1"
+                  className="block text-sm font-medium mb-1"
+                  style={{ color: "var(--muted-foreground)" }}
                 >
                   Name
                 </label>
                 <input
                   type="text"
                   id="name"
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-200 transition-all duration-200 hover:border-indigo-400"
+                  className="w-full px-4 py-3 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 hover:border-indigo-400"
+                  style={{
+                    backgroundColor: "var(--input)",
+                    borderColor: "var(--border)",
+                    color: "var(--foreground)",
+                  }}
                   required
                   placeholder="John Doe"
                 />
@@ -273,14 +373,20 @@ export default function Home() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-400 mb-1"
+                  className="block text-sm font-medium mb-1"
+                  style={{ color: "var(--muted-foreground)" }}
                 >
                   Email
                 </label>
                 <input
                   type="email"
                   id="email"
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-200 transition-all duration-200 hover:border-indigo-400"
+                  className="w-full px-4 py-3 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 hover:border-indigo-400"
+                  style={{
+                    backgroundColor: "var(--input)",
+                    borderColor: "var(--border)",
+                    color: "var(--foreground)",
+                  }}
                   required
                   placeholder="your@email.com"
                 />
@@ -289,14 +395,20 @@ export default function Home() {
             <div className="mb-6">
               <label
                 htmlFor="company"
-                className="block text-sm font-medium text-gray-400 mb-1"
+                className="block text-sm font-medium mb-1"
+                style={{ color: "var(--muted-foreground)" }}
               >
                 Company
               </label>
               <input
                 type="text"
                 id="company"
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-200 transition-all duration-200 hover:border-indigo-400"
+                className="w-full px-4 py-3 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 hover:border-indigo-400"
+                style={{
+                  backgroundColor: "var(--input)",
+                  borderColor: "var(--border)",
+                  color: "var(--foreground)",
+                }}
                 required
                 placeholder="Your Company"
               />
@@ -304,31 +416,52 @@ export default function Home() {
             <div className="mb-6">
               <label
                 htmlFor="licenseType"
-                className="block text-sm font-medium text-gray-400 mb-1"
+                className="block text-sm font-medium mb-1"
+                style={{ color: "var(--muted-foreground)" }}
               >
                 License Type
               </label>
               <select
                 id="licenseType"
-                className="w-full px-3 py-3 bg-gray-800 border border-gray-700 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-200 transition-all duration-200 hover:border-indigo-400"
+                className="w-full px-3 py-3 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 hover:border-indigo-400 pr-10"
+                style={{
+                  backgroundColor: "var(--input)",
+                  borderColor: "var(--border)",
+                  color: "var(--foreground)",
+                }}
                 required
               >
-                <option value="" className="bg-gray-800">
+                <option value="" style={{ backgroundColor: "var(--input)" }}>
                   Select License Type
                 </option>
-                <option value="enterprise" className="bg-gray-800">
+                <option
+                  value="enterprise"
+                  style={{ backgroundColor: "var(--input)" }}
+                >
                   Enterprise Software
                 </option>
-                <option value="cloud" className="bg-gray-800">
+                <option
+                  value="cloud"
+                  style={{ backgroundColor: "var(--input)" }}
+                >
                   Cloud Services
                 </option>
-                <option value="developer" className="bg-gray-800">
+                <option
+                  value="developer"
+                  style={{ backgroundColor: "var(--input)" }}
+                >
                   Developer Tools
                 </option>
-                <option value="security" className="bg-gray-800">
+                <option
+                  value="security"
+                  style={{ backgroundColor: "var(--input)" }}
+                >
                   Security Solutions
                 </option>
-                <option value="other" className="bg-gray-800">
+                <option
+                  value="other"
+                  style={{ backgroundColor: "var(--input)" }}
+                >
                   Other
                 </option>
               </select>
@@ -336,21 +469,31 @@ export default function Home() {
             <div className="mb-6">
               <label
                 htmlFor="message"
-                className="block text-sm font-medium text-gray-400 mb-1"
+                className="block text-sm font-medium mb-1"
+                style={{ color: "var(--muted-foreground)" }}
               >
                 Message
               </label>
               <textarea
                 id="message"
                 rows={4}
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-200 transition-all duration-200 hover:border-indigo-400"
+                className="w-full px-4 py-3 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 hover:border-indigo-400"
+                style={{
+                  backgroundColor: "var(--input)",
+                  borderColor: "var(--border)",
+                  color: "var(--foreground)",
+                }}
                 required
                 placeholder="Tell us about your software licenses..."
               ></textarea>
             </div>
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white py-3 px-6 rounded-md font-semibold transition duration-300 transform hover:translate-y-[-2px] hover:shadow-lg"
+              className="w-full py-3 px-6 rounded-md font-semibold transition duration-300 transform hover:translate-y-[-2px] hover:shadow-lg text-white"
+              style={{
+                background:
+                  "linear-gradient(to right, var(--button-gradient-from), var(--button-gradient-to))",
+              }}
             >
               Submit
             </button>
@@ -359,17 +502,28 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-10 px-6 sm:px-10 md:px-20">
+      <footer
+        className="text-white py-10 px-6 sm:px-10 md:px-20"
+        style={{ backgroundColor: "var(--section-dark)" }}
+      >
         <div className="max-w-5xl mx-auto text-center">
           <div className="inline-block mb-4 text-2xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 text-transparent bg-clip-text">
             <span className="mr-1">💻</span>
             <span>SoftSell</span>
           </div>
 
-          <p className="text-sm">© 2025 SoftSell. All rights reserved.</p>
-          <p className="text-sm text-gray-400   my-4">
+          <p className="text-sm" style={{ color: "var(--primary-foreground)" }}>
+            © 2025 SoftSell. All rights reserved.
+          </p>
+          <p
+            className="text-sm my-4"
+            style={{ color: "var(--muted-foreground)" }}
+          >
             by{" "}
-            <a className="text-blue-400" href="https://github.com/Aman-Jangid">
+            <a
+              href="https://github.com/Aman-Jangid"
+              style={{ color: "var(--primary)" }}
+            >
               Aman-Jangid
             </a>
           </p>

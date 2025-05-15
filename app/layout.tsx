@@ -33,7 +33,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const storedTheme = localStorage.getItem('theme');
+                  if (storedTheme) {
+                    document.documentElement.setAttribute('data-theme', storedTheme);
+                  } else {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

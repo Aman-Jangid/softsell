@@ -1,26 +1,126 @@
 @import "tailwindcss";
 
 :root {
+  /* Light theme colors */
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #4f46e5;
+  --primary-foreground: #ffffff;
+  --secondary: #6366f1;
+  --secondary-foreground: #ffffff;
+  --card: #ffffff;
+  --card-foreground: #171717;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --accent: #f9fafb;
+  --accent-foreground: #111827;
+  --border: #e5e7eb;
+  --input: #d7dff0;
+  --hero-gradient-from: #4f46e5;
+  --hero-gradient-to: #7e22ce;
+  --button-gradient-from: #4f46e5;
+  --button-gradient-to: #7c3aed;
+  --testimonial-bg: #ffffff;
+  --testimonial-text: #374151;
+  --section-light: #f9fafb;
+  --section-dark: #1f2937;
+  --form-bg: #1e293b;
+  --form-border: #2d3748;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Dark Theme */
+[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --primary: #6366f1;
+  --primary-foreground: #ffffff;
+  --secondary: #4f46e5;
+  --secondary-foreground: #ffffff;
+  --card: #1e1e1e;
+  --card-foreground: #ededed;
+  --muted: #1e1e1e;
+  --muted-foreground: #a1a1aa;
+  --accent: #220942;
+  --accent-foreground: #ededed;
+  --border: #333333;
+  --input: rgba(0, 0, 012, 0.4);
+  --hero-gradient-from: #312e81;
+  --hero-gradient-to: #581c87;
+  --button-gradient-from: #4338ca;
+  --button-gradient-to: #6d28d9;
+  --testimonial-bg: #1e1e1e;
+  --testimonial-text: #d1d5db;
+  --section-light: #111827;
+  --section-dark: #030712;
+  --form-bg: #111827;
+  --form-border: #1f2937;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(
+      to right,
+      var(--hero-gradient-from),
+      var(--hero-gradient-to)
+    );
+  }
+
+  .button-gradient {
+    background: linear-gradient(
+      to right,
+      var(--button-gradient-from),
+      var(--button-gradient-to)
+    );
+  }
+
+  .section-light {
+    background-color: var(--section-light);
+    color: var(--foreground);
+  }
+
+  .section-dark {
+    background-color: var(--section-dark);
+    color: var(--primary-foreground);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    @apply transition-colors duration-300;
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  input,
+  select,
+  textarea {
+    background-color: var(--input);
+    border-color: var(--border);
+    color: var(--foreground);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--foreground);
+  }
+}
+
+/* Default styles - light theme */
+html {
+  color-scheme: light;
+}
+
+/* Dark theme styles */
+html[data-theme="dark"] {
+  color-scheme: dark;
 }
