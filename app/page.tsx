@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Inbox,
   BarChart,
@@ -6,7 +8,38 @@ import {
   CheckCircle,
   MapPin,
   BadgeHelp,
+  ChevronDown,
 } from "lucide-react";
+
+// Smooth scroll client component
+const SmoothScrollLink = ({
+  href,
+  children,
+  className,
+}: {
+  href: string;
+  children: React.ReactNode;
+  className: string;
+}) => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const targetId = href.replace("#", "");
+    const element = document.getElementById(targetId);
+
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
+  return (
+    <a href={href} className={className} onClick={handleClick}>
+      {children}
+    </a>
+  );
+};
 
 export default function Home() {
   return (
@@ -23,7 +56,15 @@ export default function Home() {
 
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-5"></div>
 
-        <div className="max-w-4xl mx-auto flex flex-col gap-8 items-center text-center relative z-10">
+        <div className="absolute top-2 left-4 z-20">
+          <div className="inline-block text-2xl font-bold">
+            <span className="bg-gradient-to-r from-indigo-100 to-purple-100 text-transparent bg-clip-text">
+              SoftSell
+            </span>
+          </div>
+        </div>
+
+        <div className="max-w-4xl mx-auto flex flex-col gap-8 items-center text-center relative z-10 mt-10">
           <div className="relative inline-block">
             <div className="absolute -inset-1 bg-gradient-to-r from-indigo-200 to-purple-200 rounded-lg blur-3xl opacity-20"></div>
             <h1 className="relative text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight">
@@ -40,26 +81,16 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 opacity-0 group-hover:opacity-10 rounded-md transition-opacity duration-300"></div>
               Sell Licenses
             </button>
-            <a
+            <SmoothScrollLink
               href="#how-it-works"
-              className="text-white  flex items-center gap-2 font-medium hover:text-indigo-200 transition-colors duration-300 group"
+              className="text-white flex items-center gap-2 font-medium hover:text-indigo-200 transition-colors duration-300 group"
             >
               <span>How it works</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+              <ChevronDown
+                size={20}
                 className="group-hover:translate-y-1 transition-transform duration-300"
-              >
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </a>
+              />
+            </SmoothScrollLink>
           </div>
         </div>
       </section>
@@ -279,7 +310,7 @@ export default function Home() {
               </label>
               <select
                 id="licenseType"
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-200 transition-all duration-200 hover:border-indigo-400"
+                className="w-full px-3 py-3 bg-gray-800 border border-gray-700 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-200 transition-all duration-200 hover:border-indigo-400"
                 required
               >
                 <option value="" className="bg-gray-800">
@@ -330,7 +361,10 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-10 px-6 sm:px-10 md:px-20">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-xl font-bold mb-2">SoftSell</h2>
+          <div className="inline-block mb-4 text-2xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 text-transparent bg-clip-text">
+            <span className="mr-1">💻</span>
+            <span>SoftSell</span>
+          </div>
 
           <p className="text-sm">© 2025 SoftSell. All rights reserved.</p>
           <p className="text-sm text-gray-400   my-4">
