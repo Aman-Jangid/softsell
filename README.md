@@ -1,87 +1,79 @@
-# SoftSell - Marketing Website
+# SoftSell - Software License Resale Platform
 
-A responsive single-page marketing website for SoftSell, a fictional software resale startup that helps businesses monetize their unused software licenses.
+A modern marketing website for a fictional B2B SaaS startup
 
-## Features Implemented
+## Project Overview
 
-1. **Hero Section**
-   - Eye-catching headline and subheading 
-   - Clear call-to-action button
+SoftSell is a responsive single-page application (SPA) designed to showcase a fictional platform that helps businesses resell unused software licenses. Built as a frontend demo, it highlights key marketing elements, an AI-powered chat widget, and a clean UI.
 
-2. **How It Works**
-   - Three-step process visualization with icons
-   - Clear descriptions of each step in the process
+## Key Features
 
-3. **Why Choose Us**
-   - Four key value propositions with icons
-   - Concise explanations of business benefits
+✔ Responsive Design – Optimized for mobile, tablet, and desktop.  
+✔ Interactive Chat Widget – Powered by Gemini AI to answer FAQs (or mock responses if no API key is provided).  
+✔ Conversion-Focused Sections – Hero, value proposition, testimonials, and contact form to capture leads.  
+✔ Modern UI – Tailwind CSS for styling, subtle animations, and accessible color scheme (indigo/blue gradients).
 
-4. **Customer Testimonials**
-   - Two testimonial cards with customer information
-   - Quotes highlighting successful use cases
+## Technology Stack
 
-5. **Contact Form**
-   - Lead capture form with field validation
-   - Form fields: Name, Email, Company, License Type (dropdown), Message
+| Component | Choice | Purpose |
+| --- | --- | --- |
+| Framework | Next.js 14 | React-based SSR and routing |
+| Styling | Tailwind CSS | Utility-first CSS for rapid development |
+| AI Integration | Gemini API | Dynamic chat responses |
+| Icons | Lucide | Clean, consistent iconography |
 
-6. **Responsive Design**
-   - Mobile-first approach
-   - Multiple breakpoints for different device sizes
-   - Responsive grid layouts
+## Setup & Installation
 
-## Design Choices
+### Prerequisites
 
-### UI Framework
-- Built with Next.js 14 and Tailwind CSS for rapid development
-- Uses Geist font family for modern typography
-- Lucide React for consistent, high-quality icons
+- Node.js v18+
+- npm/yarn
 
-### Color Palette
-- Primary: Indigo/blue gradient (#4f46e5 to #2563eb)
-- Secondary: White for contrast
-- Accents: Green, orange, blue, and purple for feature highlights
-- Neutral: Gray for text and backgrounds
+### Steps
 
-### Design Principles
-- Clean, modern aesthetic with ample whitespace
-- Consistent spacing and typography
-- Visual hierarchy emphasizing key information
-- Subtle animations and hover effects
+1. Clone the repository
+   ```bash
+   git clone https://github.com/your-repo/softsell.git
+   ```
 
-## Time Spent
+2. Install dependencies
+   ```bash
+   npm install  # or yarn
+   ```
 
-- Planning and design: 1 hour
-- Implementation: 2 hours
-- Testing and refinement: 1 hour
-- Total: ~4 hours
+3. Run the development server
+   ```bash
+   npm run dev  # or yarn dev
+   ```
 
-## Getting Started
+4. Open http://localhost:3000 in your browser.
 
-First, run the development server:
+## AI Chat Widget Configuration
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Option 1: Mock Mode (Zero Setup)
+- Works out-of-the-box with predefined responses.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Option 2: Gemini AI Integration
+- Obtain a free API key from Google Gemini Studio.
+- Create a `.env.local` file in the root directory:
+  ```env
+  GEMINI_API_KEY=paste_the_api_key
+  ```
+- Restart the dev server.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Recommended Host: Vercel (Used it cause it's optimized for Next.js)
 
-## Learn More
+1. Push code to GitHub/GitLab.
+2. Import the repo into Vercel.
+3. Add environment variables (the ones in `.env.local.example`).
+4. Deploy!
 
-To learn more about Next.js, take a look at the following resources:
+## Future Improvements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+With additional time, I'd implement:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🔹 Authentication – For businesses to manage licenses.  
+🔹 Backend Integration – Real license listings and transactions.  
+🔹 Navigation – More pages and Responsive Navigation.

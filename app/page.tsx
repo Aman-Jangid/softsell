@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { SmoothScrollLink } from "./components/SmoothScrollLink";
+import { ChatWidget } from "./components/ChatWidget";
 
 export default function Home() {
   return (
@@ -529,6 +530,8 @@ export default function Home() {
           </p>
         </div>
       </footer>
+
+      <ChatWidget />
     </div>
   );
 }
